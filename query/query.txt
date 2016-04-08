@@ -1,0 +1,66 @@
+CREATE VIEW v_booking AS (SELECT
+	`bk`.`Bid` AS `Bid`,
+	`bk`.`tid` AS `tsid`,
+	`bk`.`rid` AS `rsid`,
+	`bk`.`uid` AS `usid`,
+	`bk`.`price` AS `price`,
+	`bk`.`datestart` AS `datestart`,
+	`bk`.`date_end` AS `date_end`,
+	`bk`.`status` AS `status`,
+	`bk`.`Total_price` AS `Total_price`,
+	`u`.`uid` AS `uid`,
+	`u`.`uName` AS `uName`,
+	`u`.`phone` AS `phone`,
+	`u`.`national_ID` AS `national_ID`,
+	`u`.`passport` AS `passport`,
+	`r`.`rid` AS `rid`,
+	`r`.`rname` AS `rname`,
+	`r`.`image` AS `image`,
+	`t`.`tid` AS `tid`,
+	`t`.`tname` AS `tname`,
+	`t`.`geust` AS `geust`
+FROM
+	(
+		`tbl_booking` `bk`
+		LEFT JOIN `tbl_user` `u` ON (`u`.`uid` = `bk`.`uid`)
+	)
+LEFT JOIN tbl_room r ON(r.rid=bk.rid)
+LEFT JOIN roomtype t ON(t.tid=bk.tid)
+WHERE
+	(`bk`.`status` <> 0)); 
+
+
+
+
+
+-------------------------------------------------------------------------new view-----------------------------
+(SELECT
+	`bk`.`Bid` AS `Bid`,
+	`bk`.`tid` AS `tsid`,
+	`bk`.`rid` AS `rsid`,
+	`bk`.`uid` AS `usid`,
+	`bk`.`price` AS `price`,
+	`bk`.`datestart` AS `datestart`,
+	`bk`.`date_end` AS `date_end`,
+	`bk`.`status` AS `status`,
+	`bk`.`Total_price` AS `Total_price`,
+	`u`.`uid` AS `uid`,
+	`u`.`uName` AS `uName`,
+	`u`.`phone` AS `phone`,
+	`u`.`national_ID` AS `national_ID`,
+	`u`.`passport` AS `passport`,
+	`r`.`rid` AS `rid`,
+	`r`.`rname` AS `rname`,
+	`r`.`image` AS `image`,
+	`r`.`bed` AS `bed`,
+	`t`.`tid` AS `tid`,
+	`t`.`tname` AS `tname`
+FROM
+	(
+		`tbl_booking` `bk`
+		LEFT JOIN `tbl_user` `u` ON (`u`.`uid` = `bk`.`uid`)
+	)
+LEFT JOIN tbl_room r ON(r.rid=bk.rid)
+LEFT JOIN roomtype t ON(t.tid=bk.tid)
+WHERE
+	(`bk`.`status` <> 0)) 
